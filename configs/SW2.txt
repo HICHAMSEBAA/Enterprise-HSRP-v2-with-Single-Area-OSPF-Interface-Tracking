@@ -1,0 +1,21 @@
+hostname SW2
+!
+vlan 10
+ name HSRP_LAN
+!
+interface GigabitEthernet0/0
+ description PC2_ACCESS
+ switchport mode access
+ switchport access vlan 10
+ spanning-tree portfast
+!
+interface GigabitEthernet0/1
+ description TRUNK_TO_SW1
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+!
+interface GigabitEthernet0/2
+ description TO_R2_g0/0
+ switchport mode access
+ switchport access vlan 10
+!

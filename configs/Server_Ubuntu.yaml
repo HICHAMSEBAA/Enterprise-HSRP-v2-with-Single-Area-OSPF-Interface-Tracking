@@ -1,0 +1,12 @@
+network:
+  version: 2
+  renderer: networkd
+  ethernets:
+    eth0:
+      dhcp4: no
+      addresses:
+        - 172.1.16.100/24
+      routes:
+        - to: default
+          via: 172.1.16.1
+      

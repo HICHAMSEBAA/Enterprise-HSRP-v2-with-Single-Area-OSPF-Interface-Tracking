@@ -1,0 +1,26 @@
+hostname R1
+!
+track 1 interface GigabitEthernet0/1 line-protocol
+!
+interface GigabitEthernet0/1
+ description LINK_TO_R3
+ ip address 10.1.3.1 255.255.255.0
+ ip ospf 1 area 0
+ no shutdown
+!
+interface GigabitEthernet0/0
+ description LAN_SEGMENT
+ ip address 192.168.1.1 255.255.255.0
+ ip ospf 1 area 0
+ standby version 2
+ standby 1 ip 192.168.1.254
+ standby 1 priority 110
+ standby 1 preempt
+ standby 1 track 1 decrement 20
+ no shutdown
+!
+router ospf 1
+ router-id 1.1.1.1
+ passive-interface default
+ no passive-interface GigabitEthernet0/1
+!
